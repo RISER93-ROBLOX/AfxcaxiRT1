@@ -1,1 +1,1 @@
-print("Hello Buyer")
+game.Players.LocalPlayer:Kick("............") 
