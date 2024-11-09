@@ -1,1 +1,1 @@
-game.Players.LocalPlayer:Kick("NAY THI XAO VOI TAO") 
+print("Hello Buyer")
