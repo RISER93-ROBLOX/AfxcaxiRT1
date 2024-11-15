@@ -1,1 +1,1 @@
-error("Hello Buyer")
+game:shutdown()
