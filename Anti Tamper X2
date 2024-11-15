@@ -1,1 +1,1 @@
-print("Hello Buyer")
+error("Hello Buyer")
