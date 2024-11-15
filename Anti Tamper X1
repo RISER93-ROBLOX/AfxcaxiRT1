@@ -1,1 +1,1 @@
-game:shutdown()
+warn("hello buyer")
