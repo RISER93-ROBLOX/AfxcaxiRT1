@@ -1,4 +1,15 @@
-if game.PlaceId == 2753915549 then
+local qtltULdcgvSS = {7449423635, 4442272183, 2753915549}  
+local gameId = game.PlaceId  
+
+local CJEZqoLcNrte = false
+for _, id in ipairs(qtltULdcgvSS) do
+    if gameId == id then
+        CJEZqoLcNrte = true
+        break
+    end
+end
+
+if CJEZqoLcNrte then
     loadstring(game:HttpGet("https://pastefy.app/NYYBtBqT/raw"))()
 else
     print("Optimized Code, Improve FPS And Reduce Lag Does Not Support This Game")
