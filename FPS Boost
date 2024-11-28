@@ -1,3 +1,4 @@
+print("Xero Hub")
 repeat
     task.wait()
 until game:IsLoaded() and game.Players.LocalPlayer:FindFirstChild("DataLoaded")
@@ -86,14 +87,13 @@ end
 
 game.Players.PlayerAdded:Connect(function(player)
     player.CharacterAdded:Connect(function()
-        task.wait(1)  -- Ensure the character has loaded
+        task.wait(1)  
         removePlayerEffects(player)
     end)
 end)
 
 Workspace.DescendantAdded:Connect(function(child)
     task.spawn(function()
-        -- Apply modifications to any new object
         modifyObject(child)
     end)
 end)
