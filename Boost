@@ -1,5 +1,5 @@
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer:FindFirstChild("DataLoaded")
-
+setfpscap(360)
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local Lighting = game.Lighting
@@ -86,3 +86,4 @@ workspace.DescendantAdded:Connect(function(child)
         end
     end)
 end)
+setfpscap(360)
