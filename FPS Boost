@@ -10,7 +10,7 @@ for _, id in ipairs(qtltULdcgvSS) do
 end
 
 if CJEZqoLcNrte then
-    loadstring(game:HttpGet("https://pastefy.app/NYYBtBqT/raw"))()
+    loadstring(game:HttpGet("https://pastefy.app/u0q9Sqw7/raw"))()
 else
     print("Optimized Code, Improve FPS And Reduce Lag Does Not Support This Game")
 end
