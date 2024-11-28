@@ -1,4 +1,7 @@
-repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer:FindFirstChild("DataLoaded")
+repeat
+    task.wait()
+until game:IsLoaded() and game.Players.LocalPlayer:FindFirstChild("DataLoaded")
+
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local Lighting = game.Lighting
@@ -8,9 +11,9 @@ local Terrain = Workspace:FindFirstChildOfClass('Terrain')
 setfpscap(60)
 UserSettings():GetService("UserGameSettings").MasterVolume = 0
 
-local decalsyeeted = true
 sethiddenproperty(Lighting, "Technology", 2)
 sethiddenproperty(Terrain, "Decoration", false)
+
 
 Terrain.WaterWaveSize = 0
 Terrain.WaterWaveSpeed = 0
@@ -21,11 +24,11 @@ Lighting.FogEnd = 9e9
 Lighting.Brightness = 0
 settings().Rendering.QualityLevel = 1
 
-for i, v in pairs(Workspace:GetDescendants()) do
-    if v:IsA("BasePart") and not v:IsA("MeshPart") then
+for _, v in pairs(Workspace:GetDescendants()) do
+    if v:IsA("BasePart") then
         v.Material = "Plastic"
         v.Reflectance = 0
-    elseif (v:IsA("Decal") or v:IsA("Texture")) and decalsyeeted then
+    elseif v:IsA("Decal") or v:IsA("Texture") then
         v.Transparency = 1
     elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
         v.Lifetime = NumberRange.new(0)
@@ -34,15 +37,15 @@ for i, v in pairs(Workspace:GetDescendants()) do
         v.BlastRadius = 1
     elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
         v.Enabled = false
-    elseif v:IsA("MeshPart") and decalsyeeted then
+    elseif v:IsA("MeshPart") then
+        v.TextureID = 10385902758728957
         v.Material = "Plastic"
         v.Reflectance = 0
-        v.TextureID = 10385902758728957
-    elseif v:IsA("SpecialMesh") and decalsyeeted then
+    elseif v:IsA("SpecialMesh") then
         v.TextureId = 0
-    elseif v:IsA("ShirtGraphic") and decalsyeeted then
+    elseif v:IsA("ShirtGraphic") then
         v.Graphic = 1
-    elseif (v:IsA("Shirt") or v:IsA("Pants")) and decalsyeeted then
+    elseif (v:IsA("Shirt") or v:IsA("Pants")) then
         v[v.ClassName.."Template"] = 1
     end
 end
@@ -56,8 +59,16 @@ end
 Workspace.DescendantAdded:Connect(function(child)
     task.spawn(function()
         if child:IsA("ForceField") or child:IsA("Sparkles") or child:IsA("Smoke") or child:IsA("Fire") then
-            RunService.Heartbeat:Wait()
             child:Destroy()
+        elseif child:IsA("Motor6D") or child:IsA("BodyVelocity") or child:IsA("BodyGyro") or child:IsA("BodyPosition") then
+            child:Destroy()
+        elseif child:IsA("Animation") or child:IsA("Animator") then
+            child:Destroy()
+        elseif child:IsA("Humanoid") then
+            child.WalkSpeed = 0
+            child.JumpHeight = 0
+            child.MaxSlope = 0
+            child.Health = 0
         end
     end)
 end)
@@ -72,9 +83,31 @@ local function WindowFocusedFunction()
     setfpscap(60)
 end
 
-local function Initialize()
-    UserInputService.WindowFocusReleased:Connect(WindowFocusReleasedFunction)
-    UserInputService.WindowFocused:Connect(WindowFocusedFunction)
+UserInputService.WindowFocusReleased:Connect(WindowFocusReleasedFunction)
+UserInputService.WindowFocused:Connect(WindowFocusedFunction)
+
+task.wait(1)
+local function applyTransparencyToParts(parts)
+    for _, v in pairs(parts) do
+        if v:IsA("BasePart") then
+            v.Transparency = 1
+        end
+    end
 end
 
-Initialize()
+applyTransparencyToParts(workspace:GetDescendants())
+
+for _, v in ipairs(getnilinstances()) do
+    if v:IsA("BasePart") then
+        v.Transparency = 1
+    end
+    applyTransparencyToParts(v:GetDescendants())
+end
+
+Workspace.DescendantAdded:Connect(function(v)
+    task.spawn(function()
+        if v:IsA("BasePart") then
+            v.Transparency = 1
+        end
+    end)
+end)
