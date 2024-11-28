@@ -10,10 +10,8 @@ local Terrain = Workspace:FindFirstChildOfClass('Terrain')
 
 setfpscap(60)
 UserSettings():GetService("UserGameSettings").MasterVolume = 0
-
 sethiddenproperty(Lighting, "Technology", 2)
 sethiddenproperty(Terrain, "Decoration", false)
-
 
 Terrain.WaterWaveSize = 0
 Terrain.WaterWaveSpeed = 0
@@ -24,10 +22,11 @@ Lighting.FogEnd = 9e9
 Lighting.Brightness = 0
 settings().Rendering.QualityLevel = 1
 
-for _, v in pairs(Workspace:GetDescendants()) do
+local function modifyObject(v)
     if v:IsA("BasePart") then
         v.Material = "Plastic"
         v.Reflectance = 0
+        v.Transparency = 1
     elseif v:IsA("Decal") or v:IsA("Texture") then
         v.Transparency = 1
     elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
@@ -45,9 +44,17 @@ for _, v in pairs(Workspace:GetDescendants()) do
         v.TextureId = 0
     elseif v:IsA("ShirtGraphic") then
         v.Graphic = 1
-    elseif (v:IsA("Shirt") or v:IsA("Pants")) then
+    elseif v:IsA("Shirt") or v:IsA("Pants") then
         v[v.ClassName.."Template"] = 1
+    elseif v:IsA("Accessory") or v:IsA("Hat") then
+        v:Destroy()
+    elseif v:IsA("BodyColors") then
+        v:Destroy()
     end
+end
+
+for _, v in pairs(Workspace:GetDescendants()) do
+    modifyObject(v)
 end
 
 for _, e in ipairs(Lighting:GetChildren()) do
@@ -56,20 +63,38 @@ for _, e in ipairs(Lighting:GetChildren()) do
     end
 end
 
+local function removePlayerEffects(player)
+    if player.Character then
+        local char = player.Character
+        for _, v in pairs(char:GetChildren()) do
+            if v:IsA("Accessory") or v:IsA("Hat") or v:IsA("Shirt") or v:IsA("Pants") or v:IsA("ShirtGraphic") or v:IsA("BodyColors") then
+                v:Destroy()
+            elseif v:IsA("Part") then
+                v.Transparency = 1  
+            elseif v:IsA("MeshPart") then
+                v.TextureID = 10385902758728957  
+                v.Material = "Plastic"
+                v.Reflectance = 0
+            elseif v:IsA("Humanoid") then
+                v.Health = 0  
+                v.WalkSpeed = 0
+                v.JumpHeight = 0
+            end
+        end
+    end
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function()
+        task.wait(1)  -- Ensure the character has loaded
+        removePlayerEffects(player)
+    end)
+end)
+
 Workspace.DescendantAdded:Connect(function(child)
     task.spawn(function()
-        if child:IsA("ForceField") or child:IsA("Sparkles") or child:IsA("Smoke") or child:IsA("Fire") then
-            child:Destroy()
-        elseif child:IsA("Motor6D") or child:IsA("BodyVelocity") or child:IsA("BodyGyro") or child:IsA("BodyPosition") then
-            child:Destroy()
-        elseif child:IsA("Animation") or child:IsA("Animator") then
-            child:Destroy()
-        elseif child:IsA("Humanoid") then
-            child.WalkSpeed = 0
-            child.JumpHeight = 0
-            child.MaxSlope = 0
-            child.Health = 0
-        end
+        -- Apply modifications to any new object
+        modifyObject(child)
     end)
 end)
 
@@ -86,7 +111,6 @@ end
 UserInputService.WindowFocusReleased:Connect(WindowFocusReleasedFunction)
 UserInputService.WindowFocused:Connect(WindowFocusedFunction)
 
-task.wait(1)
 local function applyTransparencyToParts(parts)
     for _, v in pairs(parts) do
         if v:IsA("BasePart") then
