@@ -1,3 +1,0 @@
-while wait(300) do
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/RISER93-ROBLOX/AfxcaxiRT1/refs/heads/main/Anti%20Tamper%20X1"))()
-end
