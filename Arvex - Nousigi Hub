@@ -1,0 +1,13 @@
+if isfolder("Nousigi Hub") then
+    if isfile("Nousigi Hub/savedkey") then
+        local cnt = readfile("Nousigi Hub/savedkey")
+        if cnt ~= "wRGWaYdbJykbTTkwzJiscKUuFaqgjVKm" then 
+            writefile("Nousigi Hub/savedkey", "wRGWaYdbJykbTTkwzJiscKUuFaqgjVKm")
+        end
+    else
+        writefile("Nousigi Hub/savedkey", "wRGWaYdbJykbTTkwzJiscKUuFaqgjVKm") 
+    end
+else
+    makefolder("Nousigi Hub") 
+    writefile("Nousigi Hub/savedkey", "wRGWaYdbJykbTTkwzJiscKUuFaqgjVKm") 
+end
