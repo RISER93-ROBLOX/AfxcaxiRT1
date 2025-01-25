@@ -1,7 +1,7 @@
 if isfolder("Nousigi Hub") then
     if isfile("Nousigi Hub/savedkey") then
         local cnt = readfile("Nousigi Hub/savedkey")
-        if cnt ~= "NCHWCVhxWwOMcGwWjKivIjGYXfMzjSlP" then 
+        if cnt ~= "SgGwscpDqBmXTbapXDPleKjEaQtlatAH" then 
             writefile("Nousigi Hub/savedkey", "wRGWaYdbJykbTTkwzJiscKUuFaqgjVKm")
         end
     else
