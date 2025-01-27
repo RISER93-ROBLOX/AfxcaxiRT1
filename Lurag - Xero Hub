@@ -1,13 +1,13 @@
 if isfolder("Xero Hub") then
     if isfile("Xero Hub/key.txt") then
         local cnt = readfile("Xero Hub/key.txt")
-        if cnt ~= "5H46F46KWPYLP45662T6Z5FVVX64XSHD6LXPTZHX63WO3C5NRO23U" then 
-            writefile("Xero Hub/key.txt", "5H46F46KWPYLP45662T6Z5FVVX64XSHD6LXPTZHX63WO3C5NRO23U")
+        if cnt ~= "5H46F46KWPYLP45662T6Z5FVVX64XSHD67Q753OIZDXO3C5NRO23U" then 
+            writefile("Xero Hub/key.txt", "5H46F46KWPYLP45662T6Z5FVVX64XSHD67Q753OIZDXO3C5NRO23U")
         end
     else
-        writefile("Xero Hub/key.txt", "5H46F46KWPYLP45662T6Z5FVVX64XSHD6LXPTZHX63WO3C5NRO23U") 
+        writefile("Xero Hub/key.txt", "5H46F46KWPYLP45662T6Z5FVVX64XSHD67Q753OIZDXO3C5NRO23U") 
     end
 else
     makefolder("Xero Hub") 
-    writefile("Xero Hub/key.txt", "5H46F46KWPYLP45662T6Z5FVVX64XSHD6LXPTZHX63WO3C5NRO23U") 
+    writefile("Xero Hub/key.txt", "5H46F46KWPYLP45662T6Z5FVVX64XSHD67Q753OIZDXO3C5NRO23U") 
 end
